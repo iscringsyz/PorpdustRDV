@@ -13,7 +13,6 @@ permissions:
 jobs:
   copy-images:
     strategy:
-      fail-fast: false
       matrix:
         IMAGE_NAME: [validator, forge, tools, faucet, indexer, node-checker]
 
@@ -54,7 +53,6 @@ jobs:
           dst: |
             docker.io/aptoslab/${{ matrix.IMAGE_NAME }}:${{ inputs.image_tag_prefix }}
             docker.io/aptoslab/${{ matrix.IMAGE_NAME }}:${{ inputs.image_tag_prefix }}_${{ github.sha }}
-            docker.io/aptoslabs/${{ matrix.IMAGE_NAME }}:${{ inputs.image_tag_prefix }}
             docker.io/aptoslabs/${{ matrix.IMAGE_NAME }}:${{ inputs.image_tag_prefix }}_${{ github.sha }}
             ${{ secrets.GCP_DOCKER_ARTIFACT_REPO }}/${{ matrix.IMAGE_NAME }}:${{ inputs.image_tag_prefix }}
             ${{ secrets.GCP_DOCKER_ARTIFACT_REPO }}/${{ matrix.IMAGE_NAME }}:${{ inputs.image_tag_prefix }}_${{ github.sha }}
